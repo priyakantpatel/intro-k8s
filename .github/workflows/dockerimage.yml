@@ -11,9 +11,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: init
-      run: appVersion=$(cat package.json | jq '.version')
-    - name: Docker login
-      run: docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_ACCESS_TOKEN
+      run: appVersion=$(cat ./hello-world-web-app/package.json | jq '.version')
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: $DOCKER_HUB_USERNAME/repository
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - name: Build the Docker image
       run: docker build . --file ./hello-world-web-app/Dockerfile --tag hello-world-web-app:$appVersion
     - name: Tag latest
@@ -22,5 +26,3 @@ jobs:
       run: docker push $DOCKER_HUB_USERNAME/hello-world-web-app:latest
     - name: Docker push-ver
       run: docker push $DOCKER_HUB_USERNAME/hello-world-web-app:$appVersion
-    - name: Docker logout
-      run: docker logout
