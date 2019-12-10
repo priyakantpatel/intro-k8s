@@ -10,8 +10,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: goto app folder
+      run: cd hello-world-web-app
     - name: init
-      run: appVersion=$(cat ./hello-world-web-app/package.json | jq '.version')
+      run: appVersion=$(cat package.json | jq '.version')
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
@@ -19,7 +21,7 @@ jobs:
         username: priyakant
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - name: Build the Docker image
-      run: docker build . --file ./hello-world-web-app/Dockerfile --tag hello-world-web-app:$appVersion
+      run: docker build . --file Dockerfile --tag hello-world-web-app:$appVersion
     - name: Tag latest
       run: docker tag priyakant/hello-world-web-app:$appVersion priyakant/hello-world-web-app:latest
     - name: Docker push-latest
