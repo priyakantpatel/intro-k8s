@@ -9,13 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: init
-      run: appVersion=$(cat package.json | jq '.version')
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+    - uses: mr-smithers-excellent/docker-build-push@v1.0
       with:
-        name: priyakant/repository
+        image: priyakant/hello-world-web-app-x
+        registry: docker.io
+        dockerfile: ./hello-world-web-app/Dockerfile.ci
         username: priyakant
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-        workdir: hello-world-web-app
