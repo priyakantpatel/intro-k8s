@@ -14,12 +14,14 @@ jobs:
       run: cd hello-world-web-app
     - name: init
       run: appVersion=$(cat package.json | jq '.version')
+    
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: priyakant/repository
+        name: priyakant/repository/image
         username: priyakant
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        registry: docker.pkg.github.com
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag hello-world-web-app:$appVersion
     - name: Tag latest
