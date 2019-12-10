@@ -13,6 +13,6 @@ jobs:
       with:
         image: priyakant/hello-world-web-app-x
         registry: docker.io
-        dockerfile: ./hello-world-web-app/Dockerfile
+        dockerfile: hello-world-web-app/Dockerfile
         username: priyakant
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
