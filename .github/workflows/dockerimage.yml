@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag hello-world-web-app:$(date +%s)
+    - name: Tag latest
+      run: docker tag hello-world-web-app:$(date +%s) hello-world-web-app:latest
+    - name: Docker login
+      run: docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_ACCESS_TOKEN
+    - name: Docker push-latest
+      run: docker push priyakant/hello-world-web-app:latest
+    - name: Docker push-ver
+      run: docker push priyakant/hello-world-web-app::$(date +%s)
