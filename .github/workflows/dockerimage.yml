@@ -15,15 +15,8 @@ jobs:
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: priyakant/repository
+        name: priyakant/hello-world-web-app-x
         username: priyakant
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         workdir: hello-world-web-app
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hello-world-web-app:$appVersion
-    - name: Tag latest
-      run: docker tag priyakant/hello-world-web-app:$appVersion priyakant/hello-world-web-app:latest
-    - name: Docker push-latest
-      run: docker push priyakant/hello-world-web-app:latest
-    - name: Docker push-ver
-      run: docker push priyakant/hello-world-web-app:$appVersion
+
