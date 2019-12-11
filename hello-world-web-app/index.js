@@ -1,11 +1,12 @@
 const express = require('express')
+const os = require('os');
 const app = express()
 const port = 3000
 let healthy = true;
 
 app.get('/', (req, res) => {
     console.log(new Date(), 'Hello World!');
-    res.send({ msg: 'Hello World!', serverTime: new Date() });
+    res.send({ msg: 'Hello World!', serverTime: new Date(), hostname: os.hostname() });
 });
 
 app.get('/theme', (req, res) => {
