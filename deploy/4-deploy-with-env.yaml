@@ -22,3 +22,8 @@ spec:
         env:
           - name: theme
             value: Blue
+          # - name: theme
+          #   valueFrom:
+          #     configMapKeyRef:
+          #       name: hello-world-config
+          #       key: theme
