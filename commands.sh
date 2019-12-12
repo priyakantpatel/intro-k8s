@@ -1,6 +1,7 @@
 # command reference
 # demo namespace
 # Cluster IP - 52.167.10.241
+# kubectl run curl --image=radial/busyboxplus:curl -i --tty
 
 # get nodes
 kubectl get nodes
