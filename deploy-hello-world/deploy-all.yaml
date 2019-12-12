@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: priyakant/hello-world-web-app:1.0.0
+        image: priyakant/hello-world-web-app:3.0.0
         ports:
         - containerPort: 3000
 ---
