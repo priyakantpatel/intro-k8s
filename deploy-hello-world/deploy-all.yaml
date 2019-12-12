@@ -19,6 +19,9 @@ spec:
         image: priyakant/hello-world-web-app:3.0.0
         ports:
         - containerPort: 3000
+        env:
+          - name: theme
+            value: Green
 ---
 apiVersion: v1
 kind: Service
@@ -38,22 +41,22 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: hello-world
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  rules:
-  - http:
-      paths:
-      - path: /hello-world
-        backend:
-          serviceName: hello-world
-          servicePort: 80
+  backend:
+    serviceName: hello-world
+    servicePort: 80
+# ---
 # apiVersion: networking.k8s.io/v1beta1
 # kind: Ingress
 # metadata:
 #   name: hello-world
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
 # spec:
-#   backend:
-#     serviceName: hello-world
-#     servicePort: 80
-    
+#   rules:
+#   - http:
+#       paths:
+#       - path: /hello-world
+#         backend:
+#           serviceName: hello-world
+#           servicePort: 80    
