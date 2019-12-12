@@ -1,3 +1,7 @@
+# command reference
+# demo namespace
+# Cluster IP - 52.167.10.241
+
 # get nodes
 kubectl get nodes
 
@@ -12,5 +16,3 @@ kubectl apply -f ./deploy-all.yaml
 
 # deploy
 kubectl delete -f ./deploy-all.yaml
-
-# Cluster IP - 52.167.10.241
