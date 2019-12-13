@@ -10,7 +10,8 @@ kubectl get nodes
 kubectl get pods
 
 # get service
-kubectl get service --namespace patel-common
+# kubectl get service --namespace patel-common
+kubectl get service
 
 # deploy
 kubectl apply -f ./deploy-all.yaml
