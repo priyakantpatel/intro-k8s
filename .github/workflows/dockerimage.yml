@@ -11,7 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: init
-      run: export appVersion=$(cat ./hello-world-web-app/package.json | jq '.version')
+      # run: export appVersion=$(cat ./hello-world-web-app/package.json | jq '.version')
+      # echo "::set-env name=APP_NAME::$(cat Dockerfile | grep APP_NAME= | head -n 1 | grep -o '".*"' | sed 's/"//g')"
+      run: echo "::set-env name=appVersion::$(cat ./hello-world-web-app/package.json | jq '.version')"
+      env:
+        appVersion: 0.0.1
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
