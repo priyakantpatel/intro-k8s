@@ -17,6 +17,9 @@ jobs:
       env:
         appVersion: 0.0.1
     - name: Publish to Registry
+      run: echo "::set-env name=appVersion::$(cat ./hello-world-web-app/package.json | jq '.version')"
+      env:
+        appVersion: 0.0.1    
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: priyakant/hello-world-web-app-x:${{ appVersion }}
