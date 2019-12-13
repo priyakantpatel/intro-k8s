@@ -11,11 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: init
-      run: appVersion=$(cat package.json | jq '.version')
+      run: appVersion=$(cat ./hello-world-web-app/package.json | jq '.version')
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: priyakant/hello-world-web-app-x
+        name: priyakant/hello-world-web-app-x:appVersion
         username: priyakant
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         workdir: hello-world-web-app
