@@ -1,0 +1,6 @@
+helm create my-chart-name
+helm ls
+helm install --debug --dry-run –name my-chart-name .
+helm install --name my-chart-name .
+helm upgrade my-chart-name .
+helm upgrade my-chart-name . --set replicaCount=1
