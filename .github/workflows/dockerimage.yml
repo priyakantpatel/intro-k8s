@@ -20,7 +20,7 @@ jobs:
       run: echo "::set-env name=appVersion::$(cat ./hello-world-web-app/package.json | jq '.version')"
       env:
         appVersion: 0.0.1    
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: priyakant/hello-world-web-app-x:${{ appVersion }}
         username: priyakant
